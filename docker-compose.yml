@@ -1,10 +1,10 @@
 services :
   f1app:
-    image:
+    image: 'c3eca41f4858ebb317d4c23caadee2a9aebbcfc750ff5898e3d228ec1bd731c9'
     ports:
-    - "8080:8080"
+      - "8080:8080"
     extra_hosts :
-    - "host.docker.internal:host-gateway"
+      - "host.docker.internal:host-gateway"
     build:
       context: .
   mysql :
@@ -35,4 +35,4 @@ services :
 #      postgres-db :
 #        condition : service_healthy
 #      postgres-db-test :
-#        condition : service_healthy
+#        condition : service_
