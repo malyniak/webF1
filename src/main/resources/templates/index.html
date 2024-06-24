@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create form</title>
+</head>
+<body>
+<h2>Create form</h2>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item mt-3 mt-lg-0 mb-0 mb-lg-3" id="news">
+            <a class="nav-link sidebar-nav-link" href="/news">
+                <span class="ms-4"><i class="fa-solid fa-folder-tree fa-fw me-2"></i>News</span>
+            </a>
+        </li>
+        <li class="nav-item mt-3 mt-lg-0 mb-0 mb-lg-3" id="drivers">
+            <a class="nav-link sidebar-nav-link" href="/drivers">
+                <span class="ms-4"><i class="fa-solid fa-rectangle-list fa-fw me-2"></i>Drivers</span>
+            </a>
+        </li>
+        <li class="nav-item mt-3 mt-lg-0 mb-0 mb-lg-3" id="calender">
+            <a class="nav-link sidebar-nav-link" href="/calender">
+                <span class="ms-4"><i class="fa-solid fa-chart-simple fa-fw me-2"></i>Calender</span>
+            </a>
+        </li>
+        <th:block th:if="${authUser.isAdmin()}">
+            <li class="nav-item mt-3 mt-lg-0 mb-0 mb-lg-3" id="users">
+                <a class="nav-link sidebar-nav-link" href="/view/admin/users">
+                    <span class="ms-4"><i class="fa-solid fa-users fa-fw me-2"></i>Users</span>
+                </a>
+            </li>
+
+        </th:block>
+    </body>
+</html>
