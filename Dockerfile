@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:19-jdk-alpine
 WORKDIR app/
-COPY . .
+COPY build/libs/webF1-1.jar /app/
 ENTRYPOINT ["java", "-jar", "/app/webF1-1.jar"]

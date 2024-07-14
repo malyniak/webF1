@@ -2,7 +2,7 @@
 
 --changeset Volodymyr Malyniak:1
 
-insert into TEAM (BOSS, NAME, ENGINE)
+insert into team  (boss, name, engine)
 values ('Christian Horner',
         'Oracle Red Bull Racing',
         'Honda RBPT'),
@@ -70,50 +70,50 @@ values (1, 1),
 
 
 --changeset Volodymyr Malyniak:3
-insert into Driver (firstname, lastname, birthdate, nationality, height, weight, car_number, team)
+insert into driver (firstname, lastname, birthdate, nationality, height, weight, car_number, team, driver_status)
 values ('Max ', 'Verstappen', '1997-09-30', 'Netherlands', 180,
-        81, 1, 1),
+        81, 1, 1, 1),
        ('Sergio', 'Perez', '1990-01-26', 'Mexico', 173,
-        63, 11, 1),
+        63, 11, 1, 1),
        ('Lewis', 'Hamilton', '1985-01-07', 'England', 175,
-        66, 44, 2),
+        66, 44, 2, 1),
        ('George', 'Russell', '1998-02-15', 'England', 185,
-        70, 63, 2),
+        70, 63, 2, 1),
        ('Charles', 'Leclerc', '1997-10-16', 'Monaco', 180,
-        69, 16, 3),
+        69, 16, 3, 1),
        ('Carlos', 'Sainz', '1994-09-01', 'Spain', 178,
-        66, 55, 3),
+        66, 55, 3, 1),
        ('Lando', 'Norris', '1999-11-13', 'England', 170,
-        68, 4, 4),
+        68, 4, 4, 1),
        ('Oscar', 'Piastri', '2001-04-06', 'Australia', 178,
-        68, 81, 4),
+        68, 81, 4, 1),
        ('Fernando', 'Alonso', '1981-07-29', 'Spain', 171,
-        68, 14, 5),
+        68, 14, 5, 1),
        ('Lance', 'Stroll', '1998-10-29', 'Canada', 182,
-        70, 18, 5),
+        70, 18, 5, 1),
         ('Pierre', 'Gasly', '1996-02-07', 'France', 177,
-        70, 10, 6),
+        70, 10, 6, 1),
        ('Esteban', 'Ocon', '1996-09-17', 'France', 186,
-        66, 31, 6),
+        66, 31, 6, 1),
        ('Yuki', 'Tsunoda', '2000-02-11', 'Japan', 159,
-        54, 22, 7),
+        54, 22, 7, 1),
        ('Daniel', 'Ricciardo', '1989-07-01', 'Australia', 179,
-        66, 3, 7),
+        66, 3, 7, 1),
        ('Nico', 'Hulkenberg', '1987-08-19', 'Germany', 184,
-        78, 27, 8),
+        78, 27, 8, 1),
        ('Kevin', 'Magnussen', '1992-10-05', 'Denmark', 174,
-        68, 20, 8),
+        68, 20, 8, 1),
        ('Alexander', 'Albon', '1996-03-23', 'Thailand', 186,
-        73, 23, 9),
+        73, 23, 9, 1),
        ('Logan', 'Sargeant', '2000-12-31', 'United States', 181,
-        71, 2, 9),
+        71, 2, 9, 1),
        ('Valtteri', 'Bottas', '1989-08-28', 'Finland', 173,
-        69, 77, 10),
+        69, 77, 10, 1),
        ('Zhou', 'Guanyu', '1999-05-30', 'China', 176,
-        63, 24, 10);
+        63, 24, 10, 1);
 
 --changeset Volodymyr Malyniak:4
-insert into Contract (driver, team, salary, last_year)
+insert into contract (driver, team, salary, last_year)
 values (1, 1, 55, 2028),
        (2, 1, 14, 2026),
        (3, 2, 45, 2024),

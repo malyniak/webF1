@@ -1,18 +1,13 @@
 package com.app.webf1.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
+@Table(name = "driver")
 public class Driver {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +24,9 @@ public class Driver {
     @Column(name = "weight", nullable = false)
     private Integer weight;
     @Column(name = "driver_status", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private DriverStatus driverStatus;
     @OneToOne
-    @JoinColumn(name = "car_id", unique = true)
+    @JoinColumn(name = "car_number", unique = true, referencedColumnName = "number")
     private Car car;
 }

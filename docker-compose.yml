@@ -1,38 +1,24 @@
-services :
-  f1app:
-    image: 'c3eca41f4858ebb317d4c23caadee2a9aebbcfc750ff5898e3d228ec1bd731c9'
+version: '3.8'
+services:
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: f1_database
     ports:
-      - "8080:8080"
-    extra_hosts :
-      - "host.docker.internal:host-gateway"
-    build:
-      context: .
-  mysql :
-    image : 'mysql:latest'
-    environment :
-      - 'MYSQL_DATABASE=f1_db'
-      - 'MYSQL_PASSWORD=f1_password'
-      - 'MYSQL_ROOT_PASSWORD=12345678'
-      - 'MYSQL_USER=user@localhost'
-    ports :
-      - '3306'
+      - '3307:3306'
 
-
-#  myapp:
-#    image: sha256:184e631447127fea87382ed25e72ffcabf058b80726ef501023cc3eed35b589c
-#    ports:
-#      - "8080:8080"
-#    extra_hosts :
-#      - "host.docker.internal:host-gateway"
-#    build :
-#      context : .
-#      dockerfile : Dockerfile
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/jira
-#      SPRING_DATASOURCE_USERNAME: jira
-#      SPRING_DATASOURCE_PASSWORD: JiraRush
-#    depends_on :
-#      postgres-db :
-#        condition : service_healthy
-#      postgres-db-test :
-#        condition : service_
+  f1app:
+    container_name: f1
+    image: webf1-1
+    build: .
+    ports:
+      - '8080:8080'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/f1_database
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 12345678
+    depends_on:
+      - mysql

@@ -1,10 +1,9 @@
 package com.app.webf1.service;
 
-import com.app.webf1.dto.CarUpdateDto;
 import com.app.webf1.dto.TeamFullDto;
+import com.app.webf1.mapper.TeamMapper;
 import com.app.webf1.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,13 +12,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TeamService {
     private final TeamRepository teamRepository;
-    private final ModelMapper mapper;
+    private final TeamMapper mapper;
 
     public Optional<TeamFullDto> findById(Integer id) {
         return Optional.ofNullable(teamRepository.findById(id)
-                .map(team -> mapper.map(team, TeamFullDto.class))
+                .map(mapper::toTo)
                 .orElseThrow(() -> new RuntimeException("Team with" + id + " not found"))); // todo 26.06
     }
+
     public void update(TeamFullDto teamFullDto) {
         var team = teamRepository.findById(teamFullDto.getId());
         team.ifPresent(c -> {

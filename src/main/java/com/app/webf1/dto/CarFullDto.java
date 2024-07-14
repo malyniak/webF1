@@ -1,14 +1,12 @@
 package com.app.webf1.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
-@Getter
-@Setter
-public class CarFullDto {
+@NoArgsConstructor
+@Data
+public class CarFullDto extends BaseDto {
     private int id;
     private int number;
-    private int team;
+    private TeamFullDto teamFullDto;
 }
