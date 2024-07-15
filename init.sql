@@ -1,0 +1,1 @@
+CREATE SCHEMA IF NOT EXISTS f1_database;

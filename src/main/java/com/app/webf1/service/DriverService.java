@@ -64,8 +64,8 @@ public class DriverService {
         var id = driverUpdateDto.getId();
         checkExists(id, driverRepository.findById(id));
         var driver = driverRepository.findById(driverUpdateDto.getId()).get();
-        var updateFromTo = driverUpdateMapper.updateFromTo(driverUpdateDto, driver);
-        return driverRepository.saveAndFlush(updateFromTo);
+        var driverToUpdate = driverUpdateMapper.updateFromTo(driverUpdateDto, driver);
+        return driverRepository.saveAndFlush(driverToUpdate);
     }
 
     @Transactional
