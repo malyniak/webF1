@@ -64,8 +64,8 @@ public class CarService {
     }
     @Transactional
     public Car create(CarCreateDto carCreateDto) {
-        var entity = createMapper.toEntity(carCreateDto);
-        return carRepository.save(entity);
+        var car = createMapper.toEntity(carCreateDto);
+        return carRepository.save(car);
     }
 
     @Transactional
