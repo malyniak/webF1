@@ -5,7 +5,7 @@ spring:
     password : 12345678
   jpa :
     hibernate :
-      ddl-auto : update
+      ddl-auto : validate
   thymeleaf:
     suffix : .html
   sql :
@@ -13,3 +13,6 @@ spring:
       mode : always
   liquibase :
     change-log : classpath:/db/changelog/db.changelog-master.yaml
+  security:
+    user :
+      password : password

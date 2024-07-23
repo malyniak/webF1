@@ -4,9 +4,9 @@ import com.app.webf1.dto.TeamCreateDto;
 import com.app.webf1.dto.TeamFullDto;
 import com.app.webf1.dto.TeamUpdateDto;
 import com.app.webf1.entity.Team;
-import com.app.webf1.mapper.TeamCreateMapper;
-import com.app.webf1.mapper.TeamMapper;
-import com.app.webf1.mapper.TeamUpdateMapper;
+import com.app.webf1.mapper.team.TeamCreateMapper;
+import com.app.webf1.mapper.team.TeamMapper;
+import com.app.webf1.mapper.team.TeamUpdateMapper;
 import com.app.webf1.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,9 @@ public class TeamService {
 
     @Transactional
     public Optional<TeamFullDto> findById(Integer id) {
-        return Optional.ofNullable(teamRepository.findById(id)
-                .map(fullMapper::toTo)
-                .orElseThrow(() -> new RuntimeException("Team with" + id + " not found"))); // todo 26.06
+        var maybeTeam = teamRepository.findById(id);
+        checkExists(id, maybeTeam);
+        return maybeTeam.map(fullMapper::toTo);
     }
 
     @Transactional
@@ -43,8 +43,9 @@ public class TeamService {
 
     @Transactional
     public Team updateNumber(TeamUpdateDto teamUpdateDto, Integer id) {
-        checkExists(id, teamRepository.findById(id));
-        var team = teamRepository.findById(id).get();
+        var maybeTeam = teamRepository.findById(id);
+        checkExists(id, maybeTeam);
+        var team = maybeTeam.get();
         var teamToUpdate = teamUpdateMapper.updateFromTo(teamUpdateDto, team);
         return teamRepository.saveAndFlush(teamToUpdate);
     }
@@ -55,6 +56,7 @@ public class TeamService {
         checkExists(id, maybeTeam);
         teamRepository.delete(maybeTeam.get());
     }
+
     @Transactional
     public Team create(TeamCreateDto teamCreateDto) {
         var team = teamCreateMapper.toEntity(teamCreateDto);

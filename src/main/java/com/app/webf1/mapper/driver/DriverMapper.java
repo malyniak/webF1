@@ -1,7 +1,9 @@
-package com.app.webf1.mapper;
+package com.app.webf1.mapper.driver;
 
 import com.app.webf1.dto.DriverFullDto;
 import com.app.webf1.entity.Driver;
+import com.app.webf1.mapper.BaseMapper;
+import com.app.webf1.mapper.car.CarMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

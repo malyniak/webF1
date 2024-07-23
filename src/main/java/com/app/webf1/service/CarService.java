@@ -5,10 +5,10 @@ import com.app.webf1.dto.CarFullDto;
 import com.app.webf1.dto.CarUpdateDto;
 import com.app.webf1.dto.TeamFullDto;
 import com.app.webf1.entity.Car;
-import com.app.webf1.mapper.CarCreateMapper;
-import com.app.webf1.mapper.CarMapper;
-import com.app.webf1.mapper.CarUpdateMapper;
-import com.app.webf1.mapper.TeamMapper;
+import com.app.webf1.mapper.car.CarCreateMapper;
+import com.app.webf1.mapper.car.CarMapper;
+import com.app.webf1.mapper.car.CarUpdateMapper;
+import com.app.webf1.mapper.team.TeamMapper;
 import com.app.webf1.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,8 +33,7 @@ public class CarService {
     public Optional<CarFullDto> findById(Integer id) {
         var maybeCar = carRepository.findById(id);
         checkExists(id, maybeCar);
-        return maybeCar
-                .map(mapper::toTo);
+        return maybeCar.map(mapper::toTo);
     }
 
     @Transactional
@@ -70,8 +69,9 @@ public class CarService {
 
     @Transactional
     public Car updateNumber(CarUpdateDto carUpdateDto, Integer id) {
-        checkExists(id, carRepository.findById(id));
-        var car = carRepository.findById(id).get();
+        var maybeCar = carRepository.findById(id);
+        checkExists(id, maybeCar);
+        var car = maybeCar.get();
         var carToUpdate = carUpdateMapper.updateFromTo(carUpdateDto, car);
         return carRepository.saveAndFlush(carToUpdate);
     }

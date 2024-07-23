@@ -5,10 +5,10 @@ import com.app.webf1.dto.DriverFullDto;
 import com.app.webf1.dto.DriverUpdateDto;
 import com.app.webf1.entity.Driver;
 import com.app.webf1.entity.Team;
-import com.app.webf1.mapper.DriverCreateMapper;
-import com.app.webf1.mapper.DriverMapper;
-import com.app.webf1.mapper.DriverUpdateMapper;
-import com.app.webf1.mapper.TeamCreateMapper;
+import com.app.webf1.mapper.driver.DriverCreateMapper;
+import com.app.webf1.mapper.driver.DriverMapper;
+import com.app.webf1.mapper.driver.DriverUpdateMapper;
+import com.app.webf1.mapper.team.TeamCreateMapper;
 import com.app.webf1.repository.CarRepository;
 import com.app.webf1.repository.DriverRepository;
 import com.app.webf1.repository.TeamRepository;
@@ -39,8 +39,7 @@ public class DriverService {
     public Optional<DriverFullDto> findById(Integer id) {
         var maybeDriver = driverRepository.findById(id);
         checkExists(id, maybeDriver);
-        return maybeDriver
-                .map(mapper::toTo);
+        return maybeDriver.map(mapper::toTo);
     }
 
     @Transactional
