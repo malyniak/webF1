@@ -36,12 +36,12 @@ public class DriverController {
         return driverService.update(driverUpdateDto);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void remove(@PathVariable Integer id) {
         driverService.delete(id);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public void create(@RequestBody DriverCreateDto driverCreateDto) {
         var driver = driverService.create(driverCreateDto);
     }

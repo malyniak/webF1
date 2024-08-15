@@ -5,8 +5,13 @@
     <title>Create form</title>
 </head>
 <body>
-<h2>Create form</h2>
-
+<div>
+    Welcome,
+    <span th:text="${#authentication.principal.username}"></span>
+</div>
+<h3>Create form</h3>
+<div th:insert="~{fragment :: logout}">
+</div>
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item mt-3 mt-lg-0 mb-0 mb-lg-3" id="news">

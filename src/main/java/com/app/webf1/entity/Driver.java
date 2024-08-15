@@ -1,5 +1,6 @@
 package com.app.webf1.entity;
 
+import com.app.webf1.Audit;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 @Table(name = "driver")
-public class Driver {
+public class Driver extends Audit<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

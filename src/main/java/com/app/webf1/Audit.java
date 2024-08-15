@@ -21,9 +21,9 @@ public abstract class Audit<T extends Serializable> {
     @CreatedDate
     private Instant createdAt;
     @LastModifiedDate
-    private Instant updatedAt;
+    private Instant lastUpdatedAt;
     @CreatedBy
     private String createdBy;
     @LastModifiedBy
-    private String lastUpdateBy;
+    private String lastUpdatedBy;
 }

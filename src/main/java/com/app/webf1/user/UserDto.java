@@ -1,9 +1,11 @@
 package com.app.webf1.user;
 
 import com.app.webf1.annotation.ValidPhoneNumber;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +17,7 @@ import java.util.Collections;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class UserDto implements UserDetails {
     @NotBlank(message = "Username is required")
     private String username;
@@ -24,6 +27,7 @@ public class UserDto implements UserDetails {
     private String email;
 
     @ValidPhoneNumber
+    @JsonProperty(value = "phone_number")
     @NotBlank(message = "Phone number is required")
     private String phoneNumber;
 

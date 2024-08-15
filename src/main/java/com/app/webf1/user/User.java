@@ -1,6 +1,6 @@
 package com.app.webf1.user;
 
-import com.app.webf1.annotation.ValidPhoneNumber;
+import com.app.webf1.Audit;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends Audit<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,6 @@ public class User {
     @Size(max = 128)
     private String email;
     @Column(nullable = false, unique = true)
-    @ValidPhoneNumber
     private String phoneNumber;
     @Column(nullable = false)
     private String password;

@@ -26,7 +26,7 @@ public class LoginController {
                 UsernamePasswordAuthenticationToken.unauthenticated(loginRequest.username(), loginRequest.password());
         Authentication authenticationResponse =
                 this.authenticationManager.authenticate(authenticationRequest);
-        // ...
+
 
         return (ResponseEntity<Void>) ResponseEntity.ok();
 
