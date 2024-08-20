@@ -1,14 +1,12 @@
 package com.app.webf1.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class CarCreateDto extends BaseDto {
     private int number;
     private TeamFullDto teamFullDto;

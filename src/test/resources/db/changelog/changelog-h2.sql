@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS driver (
                                       weight INT NOT NULL ,
                                       car_number INT,
                                       driver_status INT,
-                                      FOREIGN KEY (car_number) REFERENCES car(number),
+                                      FOREIGN KEY (car_number) REFERENCES car(number) ON UPDATE CASCADE ,
                                       team INT,
                                       FOREIGN KEY (team) REFERENCES team(id)
 );
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS contract (
                                         team INT,
                                         salary INT,
                                         last_year INT,
-                                        FOREIGN KEY (driver) REFERENCES driver(id),
+                                        FOREIGN KEY (driver) REFERENCES driver(id) ON DELETE CASCADE ,
                                         FOREIGN KEY (team) REFERENCES team(id)
 );
 
@@ -64,4 +64,3 @@ CREATE TABLE IF NOT EXISTS users
     password     VARCHAR(128) NOT NULL,
     role         TINYINT NOT NULL
 );
-

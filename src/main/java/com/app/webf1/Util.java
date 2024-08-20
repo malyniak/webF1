@@ -8,6 +8,6 @@ import java.util.Optional;
 @UtilityClass
 public class Util {
     public static  <T> T checkExists(int id, Optional<T> optional) {
-        return optional.orElseThrow( ()-> new NotFoundException("Entity with id "+ id + "not found"));
+        return optional.orElseThrow( ()-> new NotFoundException("Entity with id "+ id + " not found"));
     }
 }

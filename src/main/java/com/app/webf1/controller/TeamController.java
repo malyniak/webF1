@@ -8,6 +8,7 @@ import com.app.webf1.service.TeamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,17 +31,21 @@ public class TeamController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public Team update(@RequestBody TeamUpdateDto teamUpdateDto, @PathVariable Integer id) {
         return teamService.updateNumber(teamUpdateDto, id);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void remove(@PathVariable Integer id) {
         teamService.delete(id);
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody TeamCreateDto teamCreateDto) {
         teamService.create(teamCreateDto);
     }

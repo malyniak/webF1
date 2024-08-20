@@ -3,6 +3,7 @@ package com.app.webf1.entity;
 import com.app.webf1.Audit;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 
@@ -28,6 +29,7 @@ public class Driver extends Audit<Integer> {
     @Enumerated(EnumType.STRING)
     private DriverStatus driverStatus;
     @OneToOne
-    @JoinColumn(name = "car_number", unique = true, referencedColumnName = "number")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinColumn(name = "car_id", unique = true)
     private Car car;
 }

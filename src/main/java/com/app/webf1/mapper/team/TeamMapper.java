@@ -8,5 +8,5 @@ import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface TeamMapper extends BaseMapper<Team, TeamFullDto> {
-
+    TeamFullDto toTo(Team entity);
 }

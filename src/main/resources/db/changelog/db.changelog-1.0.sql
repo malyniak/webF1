@@ -27,12 +27,15 @@ CREATE TABLE IF NOT EXISTS driver (
                                     nationality VARCHAR(255),
                                     height INT NOT NULL ,
                                     weight INT NOT NULL ,
-                                    car_number INT,
                                     driver_status INT,
-                                    FOREIGN KEY (car_number) REFERENCES car(number),
+                                    car_id INT UNIQUE,
+                                    FOREIGN KEY (car_id) REFERENCES car(id) ON UPDATE CASCADE,
                                     team INT,
-                                    FOREIGN KEY (team) REFERENCES team(id)
-);
+                                    FOREIGN KEY (team) REFERENCES team(id),
+                                    created_by VARCHAR(255),
+                                    last_updated_by VARCHAR(255),
+                                    created_at TIMESTAMP,
+                                    last_updated_at TIMESTAMP);
 
 --changeset Volodymyr Malyniak:4
 CREATE TABLE IF NOT EXISTS contract (
@@ -41,7 +44,7 @@ CREATE TABLE IF NOT EXISTS contract (
                                     team INT,
                                     salary INT,
                                     last_year INT,
-                                    FOREIGN KEY (driver) REFERENCES driver(id),
+                                    FOREIGN KEY (driver) REFERENCES driver(id) ON DELETE CASCADE,
                                     FOREIGN KEY (team) REFERENCES team(id)
 );
 

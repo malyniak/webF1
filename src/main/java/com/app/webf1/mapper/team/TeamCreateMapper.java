@@ -8,4 +8,6 @@ import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface TeamCreateMapper extends BaseMapper<Team, TeamCreateDto> {
+//        @Mapping(target = "id", ignore = true)
+        Team toEntity(TeamCreateDto teamCreateDto);
 }

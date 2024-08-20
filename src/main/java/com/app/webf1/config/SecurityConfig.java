@@ -24,9 +24,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/registration", "/registration").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/registration", "/registration", "/public/**", "/").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
@@ -58,15 +59,4 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsService() {
-//        UserDetails user = User.withUsername("dev")
-//                .password(passwordEncoder().encode("password"))
-//                .roles(Role.DEV.name())
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
-
 }

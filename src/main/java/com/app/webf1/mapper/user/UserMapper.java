@@ -9,5 +9,5 @@ import org.mapstruct.MappingConstants;
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper extends BaseMapper<User, UserDto> {
 //    @Mapping(target = "id", ignore = true)
-//    User toEntity(UserDto to);
+    User toEntity(UserDto to);
 }

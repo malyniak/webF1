@@ -9,6 +9,7 @@ import com.app.webf1.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,12 +31,12 @@ public class CarController {
         return carService.findAll();
     }
 
-    @GetMapping("/team")
+    @PostMapping("/team")
     public List<CarFullDto> getAllByTeam(@RequestBody TeamFullDto teamFullDto) {
         return carService.findAllByTeam(teamFullDto);
     }
 
-    @GetMapping("/engine")
+    @PostMapping("/engine")
     public List<CarFullDto> getAllByEngine(@RequestParam String engine) {
         return carService.findAllByEngine(engine);
     }
@@ -44,17 +45,23 @@ public class CarController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public Car updateNumber(@RequestBody CarUpdateDto carUpdateDto, @PathVariable Integer id) {
         return carService.updateNumber(carUpdateDto, id);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public void remove(@PathVariable Integer id) {
         carService.delete(id);
     }
 
-    @PutMapping
-    public void create(@RequestBody CarCreateDto driverCreateDto) {
-        carService.create(driverCreateDto);
+    @PutMapping("/create")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody CarCreateDto carCreateDto) {
+        var car = carService.create(carCreateDto);
     }
+
+
 }
